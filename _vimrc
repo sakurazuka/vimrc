@@ -86,6 +86,10 @@ hi EasyMotionShade  ctermbg=none ctermfg=blue
 
 NeoBundle 'https://github.com/rhysd/clever-f.vim.git'
 
+NeoBundle 'https://github.com/gcmt/wildfire.vim.git'
+let g:wildfire_water_map = '<S-Enter>'
+let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
+
 NeoBundle 'https://github.com/Shougo/vimproc.vim.git', {
   \ 'build' : {
     \ 'windows' : 'make -f make_mingw32.mak',
@@ -106,6 +110,62 @@ if executable('ag')
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
   let g:unite_source_grep_recursive_opt = ''
 endif
+
+NeoBundle 'https://github.com/tpope/vim-fugitive.git'
+
+NeoBundle 'https://github.com/itchyny/lightline.vim.git'
+let g:lightline = {
+        \ 'colorscheme': 'jellybeans',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'MyModified',
+        \   'readonly': 'MyReadonly',
+        \   'fugitive': 'MyFugitive',
+        \   'filename': 'MyFilename',
+        \   'fileformat': 'MyFileformat',
+        \   'filetype': 'MyFiletype',
+        \   'fileencoding': 'MyFileencoding',
+        \   'mode': 'MyMode'
+        \ }
+        \ }
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+function! MyFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+      return fugitive#head()
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
 
 if neobundle#exists_not_installed_bundles()
 echomsg 'Not installed bundles : ' .
