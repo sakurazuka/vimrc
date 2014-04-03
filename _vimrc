@@ -167,6 +167,11 @@ function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
+NeoBundle 'https://github.com/skwp/vim-rspec.git'
+let g:RspecKeymap=0
+map <D-R> :RunSpec<cr>
+map <D-L> :RunSpecLine<cr>
+
 if neobundle#exists_not_installed_bundles()
 echomsg 'Not installed bundles : ' .
 \ string(neobundle#get_not_installed_bundle_names())
