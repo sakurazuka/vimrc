@@ -98,6 +98,8 @@ NeoBundle 'https://github.com/Shougo/vimproc.vim.git', {
     \ 'unix' : 'make -f make_unix.mak',
   \ },
 \ }
+" 自動コンパイル
+" http://d.hatena.ne.jp/hirochachacha/20111004/1317715093
 " grep検索
 nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " カーソル位置の単語をgrep検索
@@ -167,12 +169,17 @@ function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-NeoBundle 'https://github.com/skwp/vim-rspec.git'
+NeoBundle 'https://github.com/thinca/vim-quickrun.git'
+"RSpec対応
+let g:quickrun_config = {}
+let g:quickrun_config._ = {'runner' : 'vimproc'}
+let g:quickrun_config['ruby.rspec'] = { 'command': 'rspec', 'cmdopt': 'bundle exec', 'exec': '%o %c %s' }
+augroup RSpec
+  autocmd!
+  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+augroup END
+
 let mapleader=" "
-let g:RspecKeymap=0
-nmap <silent><leader>c :call RunSpec()<CR>
-nmap <silent><leader>l :call RunSpecLine()<CR>
-nmap <silent><leader>a :call RunSpecs()<CR>
 
 if neobundle#exists_not_installed_bundles()
 echomsg 'Not installed bundles : ' .
