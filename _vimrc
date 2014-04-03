@@ -168,9 +168,11 @@ function! MyMode()
 endfunction
 
 NeoBundle 'https://github.com/skwp/vim-rspec.git'
+let mapleader=" "
 let g:RspecKeymap=0
-map <D-R> :RunSpec<cr>
-map <D-L> :RunSpecLine<cr>
+nmap <silent><leader>c :call RunSpec()<CR>
+nmap <silent><leader>l :call RunSpecLine()<CR>
+nmap <silent><leader>a :call RunSpecs()<CR>
 
 if neobundle#exists_not_installed_bundles()
 echomsg 'Not installed bundles : ' .
