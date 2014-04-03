@@ -90,6 +90,8 @@ NeoBundle 'https://github.com/gcmt/wildfire.vim.git'
 let g:wildfire_water_map = '<S-Enter>'
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
 
+NeoBundle 'https://github.com/tpope/vim-surround.git'
+
 NeoBundle 'https://github.com/Shougo/vimproc.vim.git', {
   \ 'build' : {
     \ 'windows' : 'make -f make_mingw32.mak',
