@@ -34,6 +34,10 @@ augroup END
 " 行末の空白を保存時に自動削除
 autocmd BufWritePre * :%s/\s\+$//e
 
+set t_Co=256
+
+let mapleader=" "
+
 filetype plugin indent off
 if has('vim_starting')
   let bundle_dir = '~/dotfiles/bundle'
@@ -180,8 +184,6 @@ augroup RSpec
   autocmd!
   autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
-
-let mapleader=" "
 
 if neobundle#exists_not_installed_bundles()
 echomsg 'Not installed bundles : ' .
