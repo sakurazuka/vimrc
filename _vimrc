@@ -38,6 +38,9 @@ set t_Co=256
 
 let mapleader=" "
 
+set clipboard+=unnamed
+set clipboard+=autoselect
+
 filetype plugin indent off
 if has('vim_starting')
   let bundle_dir = '~/dotfiles/bundle'
@@ -175,15 +178,23 @@ function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-NeoBundle 'https://github.com/thinca/vim-quickrun.git'
-"RSpec対応
-let g:quickrun_config = {}
-let g:quickrun_config._ = {'runner' : 'vimproc'}
-let g:quickrun_config['ruby.rspec'] = { 'command': 'rspec', 'cmdopt': 'bundle exec', 'exec': '%o %c %s' }
-augroup RSpec
-  autocmd!
-  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
-augroup END
+NeoBundle 'https://github.com/tpope/vim-dispatch.git'
+
+NeoBundle 'https://github.com/thoughtbot/vim-rspec.git'
+let g:rspec_command = "Dispatch rspec {spec}"
+nmap <silent><leader>c :call RunCurrentSpecFile()<CR>
+nmap <silent><leader>n :call RunNearestSpec()<CR>
+nmap <silent><leader>l :call RunLastSpec()<CR>
+nmap <silent><leader>a :call RunAllSpecs()<CR>
+
+NeoBundle 'https://github.com/tpope/vim-endwise.git'
+
+NeoBundle 'https://github.com/kana/vim-fakeclip.git'
+
+if !exists('loaded_matchit')
+  " matchitを有効化
+  runtime macros/matchit.vim
+endif
 
 if neobundle#exists_not_installed_bundles()
 echomsg 'Not installed bundles : ' .
