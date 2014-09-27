@@ -123,6 +123,7 @@ if executable('ag')
 endif
 
 NeoBundle 'https://github.com/tpope/vim-fugitive.git'
+NeoBundle 'https://github.com/gregsexton/gitv.git'
 
 NeoBundle 'https://github.com/itchyny/lightline.vim.git'
 let g:lightline = {
