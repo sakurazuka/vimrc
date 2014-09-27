@@ -39,6 +39,5 @@ nnoremap l <C-n>
 "bookmark
 nnoremap b :open about:mybookmarks<CR>
 nnoremap B :tabopen about:mybookmarks<CR>
-/* command clip javascript evernote_doAction() */
-noremap E :js evernote_doAction()<CR>
 noremap e :js __readable_by_evernote.context_menu__call(buffer.URL)<CR>
+noremap E :js evernote_doAction()<CR>
