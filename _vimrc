@@ -179,15 +179,6 @@ function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-NeoBundle 'https://github.com/tpope/vim-dispatch.git'
-
-NeoBundle 'https://github.com/thoughtbot/vim-rspec.git'
-let g:rspec_command = "Dispatch rspec {spec}"
-nmap <silent><leader>c :call RunCurrentSpecFile()<CR>
-nmap <silent><leader>n :call RunNearestSpec()<CR>
-nmap <silent><leader>l :call RunLastSpec()<CR>
-nmap <silent><leader>a :call RunAllSpecs()<CR>
-
 NeoBundle 'https://github.com/tpope/vim-endwise.git'
 
 NeoBundle 'https://github.com/kana/vim-fakeclip.git'
