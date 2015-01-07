@@ -183,6 +183,9 @@ NeoBundle 'https://github.com/tpope/vim-endwise.git'
 
 NeoBundle 'https://github.com/kana/vim-fakeclip.git'
 
+NeoBundle 'https://github.com/szw/vim-tags.git'
+nnoremap <C-]> g<C-]>
+
 if !exists('loaded_matchit')
   " matchitを有効化
   runtime macros/matchit.vim
