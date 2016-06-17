@@ -3,8 +3,9 @@
 ・tmux
 ・zsh
 ・git
+・hub
 ・git-flow
-・git-ossue
+・git-issue
 ・peco
 ・lynx
 ・ag(the silver searcher)

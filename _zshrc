@@ -46,7 +46,7 @@ ZSH_THEME="gallois"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow ruby bundler rails)
+plugins=(git github git-flow ruby bundler rails)
 
 # User configuration
 
@@ -98,3 +98,4 @@ bindkey '^@' peco-cdr
 bindkey '^B^F' peco_select_from_git_issue_list_to_git_flow_feature_start
 bindkey '^B^I' peco_select_from_git_issue
 bindkey '^B^O' peco_select_from_git_issue_to_open
+
