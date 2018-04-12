@@ -46,17 +46,17 @@ ZSH_THEME="gallois"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-flow ruby bundler rails)
+plugins=(git git-flow ruby bundler rails docker-compose)
 
 # User configuration
 
-export PATH="/Users/hashimotohiroshi/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/Users/(username)/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 export LC_ALL="en_US.UTF-8"
 
 # Preferred editor for local and remote sessions
@@ -100,3 +100,13 @@ bindkey '^B^F' peco_select_from_git_issue_list_to_git_flow_feature_start
 bindkey '^B^I' peco_select_from_git_issue
 bindkey '^B^O' peco_select_from_git_issue_to_open
 
+# git
+function branch() {
+  git checkout -b $1;
+  git commit --allow-empty -m "CreatePR";
+  git push origin $1;
+}
+function checkout-pullrequest() {
+  git fetch upstream pull/$1/head:pr/$1
+  git checkout pr/$1
+}

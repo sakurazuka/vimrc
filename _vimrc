@@ -45,6 +45,9 @@ set clipboard+=autoselect
 set encoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp
 
+" open current file by RubyMine
+ nnoremap <Leader>m :!open -a rubymine %
+
 filetype plugin indent off
 if has('vim_starting')
   let bundle_dir = '~/vimrc/bundle'
@@ -192,6 +195,18 @@ if has('vim_starting')
 
   NeoBundle 'https://github.com/thinca/vim-ref.git'
 
+  NeoBundle 'plasticboy/vim-markdown'
+  NeoBundle 'kannokanno/previm'
+  NeoBundle 'tyru/open-browser.vim'
+
+  NeoBundle 'kchmck/vim-coffee-script'
+  " vimにcoffeeファイルタイプを認識させる
+  au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+  " インデント設定
+  autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
+  " 右ウィンドウにコンパイル結果を一時表示する
+  nnoremap <silent> ,cs :CoffeeCompile vert <CR><C-w>h
+
   call neobundle#end()
 endif
 
@@ -208,3 +223,5 @@ NeoBundleInstall
 endif
 
 filetype plugin indent on
+
+au BufRead,BufNewFile *.md set filetype=markdown
