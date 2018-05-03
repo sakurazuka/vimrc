@@ -47,6 +47,8 @@ set fileencodings=utf-8,cp932,euc-jp
 
 " open current file by RubyMine
  nnoremap <Leader>m :!open -a rubymine %
+" open current file by WebStorm
+ nnoremap <Leader>w :!open -a webstorm %
 
 filetype plugin indent off
 if has('vim_starting')
@@ -194,18 +196,6 @@ if has('vim_starting')
   nnoremap <C-]> g<C-]>
 
   NeoBundle 'https://github.com/thinca/vim-ref.git'
-
-  NeoBundle 'plasticboy/vim-markdown'
-  NeoBundle 'kannokanno/previm'
-  NeoBundle 'tyru/open-browser.vim'
-
-  NeoBundle 'kchmck/vim-coffee-script'
-  " vimにcoffeeファイルタイプを認識させる
-  au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-  " インデント設定
-  autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
-  " 右ウィンドウにコンパイル結果を一時表示する
-  nnoremap <silent> ,cs :CoffeeCompile vert <CR><C-w>h
 
   call neobundle#end()
 endif
