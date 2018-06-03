@@ -13,6 +13,10 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 set smartindent
+augroup fileTypeIndent
+  autocmd!
+  autocmd BufNewFile,BufRead *.php setlocal tabstop=4 softtabstop=4 shiftwidth=4
+augroup END
 
 " color
 colorscheme railscasts
@@ -44,6 +48,11 @@ set clipboard+=autoselect
 
 set encoding=utf-8
 set fileencodings=utf-8,cp932,euc-jp
+
+" open current file by RubyMine
+ nnoremap <Leader>m :!open -a rubymine %
+" open current file by WebStorm
+ nnoremap <Leader>w :!open -a webstorm %
 
 filetype plugin indent off
 if has('vim_starting')
@@ -192,6 +201,20 @@ if has('vim_starting')
 
   NeoBundle 'https://github.com/thinca/vim-ref.git'
 
+
+  " PHP plugin
+  NeoBundle 'https://github.com/StanAngeloff/php.vim.git'
+
+  NeoBundle 'https://github.com/jwalton512/vim-blade.git'
+
+
+  " Javascript plugin
+  NeoBundle 'https://github.com/othree/javascript-libraries-syntax.vim.git'
+  let g:used_javascript_libs = 'angularjs,vue'
+
+  NeoBundle 'https://github.com/kchmck/vim-coffee-script.git'
+  nnoremap <silent> ,cs :CoffeeCompile vert <CR><C-w>h
+
   call neobundle#end()
 endif
 
@@ -208,3 +231,5 @@ NeoBundleInstall
 endif
 
 filetype plugin indent on
+
+au BufRead,BufNewFile *.md set filetype=markdown
