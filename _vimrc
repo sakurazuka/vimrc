@@ -1,71 +1,96 @@
-syntax on
-set bs=start,indent,eol
-set laststatus=2
-set number
-set noswapfile
-set cursorline
-set cursorcolumn
-set hlsearch
+if has('gui_macvim')
 
-set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set autoindent
-set smartindent
-augroup fileTypeIndent
-  autocmd!
-  autocmd BufNewFile,BufRead *.php setlocal tabstop=4 softtabstop=4 shiftwidth=4
-augroup END
+  " MacVimの設定
+  set nocompatible
+  filetype off
 
-" color
-colorscheme railscasts
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
 
-" beep
-set visualbell t_vb=
-set noerrorbells
+  Plugin 'VundleVim/Vundle.vim'
 
-" バックアップファイルを作成しない
-:set nobackup
+  " 導入したいプラグインを以下に列挙
+  " Plugin '[Github Author]/[Github repo]' の形式で記入
+  Plugin 'kannokanno/previm'
+  Plugin 'plasticboy/vim-markdown'
+  Plugin 'dhruvasagar/vim-table-mode'
 
-" 行末のスペースをハイライト
-augroup HighlightTrailingSpaces
-  autocmd!
-  autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
-  autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
-augroup END
+  call vundle#end()
+  filetype plugin indent on
 
-" 行末の空白を保存時に自動削除
-autocmd BufWritePre * :%s/\s\+$//e
+  "　その他のカスタム設定を以下に書く
+  let g:previm_open_cmd = 'open -a "Google Chrome"'
+  augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+  augroup END
+  " }}}
+  let g:vim_markdown_conceal = 0
+  let g:table_mode_corner = '|'
+  let g:vim_markdown_folding_disabled = 1
 
-set t_Co=256
+else
 
-let mapleader=" "
-let g:ref_refe_cmd = $HOME.'/.rbenv/shims/refe'
+  " コマンドラインのVimの設定
+  syntax on
+  set bs=start,indent,eol
+  set laststatus=2
+  set number
+  set noswapfile
+  set cursorline
+  set cursorcolumn
+  set hlsearch
 
-set clipboard+=unnamed
-set clipboard+=autoselect
+  set expandtab
+  set tabstop=2
+  set shiftwidth=2
+  set softtabstop=2
+  set autoindent
+  set smartindent
 
-set encoding=utf-8
-set fileencodings=utf-8,cp932,euc-jp
+  " color
+  " colorscheme railscasts
 
-" open current file by RubyMine
- nnoremap <Leader>m :!open -a rubymine %
-" open current file by WebStorm
- nnoremap <Leader>w :!open -a webstorm %
+  " beep
+  set visualbell t_vb=
+  set noerrorbells
 
-filetype plugin indent off
-if has('vim_starting')
-  let bundle_dir = '~/vimrc/bundle'
-  if !isdirectory(bundle_dir.'/neobundle.vim')
-    call system( 'git clone https://github.com/Shougo/neobundle.vim.git '.bundle_dir.'/neobundle.vim')
-  endif
+  " バックアップファイルを作成しない
+  :set nobackup
 
-  exe 'set runtimepath+='.bundle_dir.'/neobundle.vim'
-  call neobundle#begin(bundle_dir)
+  " 行末のスペースをハイライト
+  augroup HighlightTrailingSpaces
+    autocmd!
+    autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+    autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
+  augroup END
 
-  NeoBundle 'https://github.com/tpope/vim-rails.git'
-  NeoBundle 'https://github.com/Shougo/unite.vim.git'
+  " 行末の空白を保存時に自動削除
+  autocmd BufWritePre * :%s/\s\+$//e
+
+  set t_Co=256
+
+  let mapleader=" "
+
+  set clipboard+=unnamed
+  set clipboard+=autoselect
+
+  filetype plugin indent off
+
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()
+
+  Plugin 'VundleVim/Vundle.vim'
+
+  " 導入したいプラグインを以下に列挙
+  " Plugin '[Github Author]/[Github repo]' の形式で記入
+  " Plugin 'kannokanno/previm'
+
+  " railscasts カラースキーム
+  Plugin 'jpo/vim-railscasts-theme'
+
+  Plugin 'tpope/vim-rails'
+  Plugin 'Shougo/unite.vim'
   " バッファ一覧
   nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
   " ファイル一覧
@@ -77,20 +102,20 @@ if has('vim_starting')
   " 全部乗せ
   nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 
-  NeoBundle 'https://github.com/Shougo/neomru.vim.git'
+  Plugin 'Shougo/neomru.vim'
 
-  NeoBundle 'https://github.com/basyura/unite-rails.git'
+  Plugin 'basyura/unite-rails'
   nnoremap <C-x> :Unite rails/
 
-  NeoBundle 'https://github.com/scrooloose/nerdcommenter.git'
+  Plugin 'scrooloose/nerdcommenter'
   let NERDSpaceDelims = 1
   nmap ,, <Plug>NERDCommenterToggle
   vmap ,, <Plug>NERDCommenterToggle
 
-  NeoBundle 'https://github.com/matze/vim-move.git'
+  Plugin 'matze/vim-move'
   let g:move_key_modifier = 'C'
 
-  NeoBundle 'https://github.com/Lokaltog/vim-easymotion.git'
+  Plugin 'Lokaltog/vim-easymotion'
   " Lokaltog/vim-easymotion
   " http://blog.remora.cx/2012/08/vim-easymotion.html
   " ホームポジションに近いキーを使う
@@ -103,22 +128,22 @@ if has('vim_starting')
   hi EasyMotionTarget ctermbg=none ctermfg=red
   hi EasyMotionShade  ctermbg=none ctermfg=blue
 
-  NeoBundle 'https://github.com/rhysd/clever-f.vim.git'
+  Plugin 'rhysd/clever-f.vim'
 
-  NeoBundle 'https://github.com/gcmt/wildfire.vim.git'
+  Plugin 'gcmt/wildfire.vim'
   let g:wildfire_water_map = '<S-Enter>'
   let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
 
-  NeoBundle 'https://github.com/tpope/vim-surround.git'
+  Plugin 'tpope/vim-surround'
 
-  NeoBundle 'https://github.com/Shougo/vimproc.vim.git', {
-        \ 'build' : {
-        \ 'windows' : 'make -f make_mingw32.mak',
-        \ 'cygwin' : 'make -f make_cygwin.mak',
-        \ 'mac' : 'make -f make_mac.mak',
-        \ 'unix' : 'make -f make_unix.mak',
-        \ },
-        \ }
+  Plugin 'Shougo/vimproc.vim', {
+    \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+    \ },
+  \ }
   " 自動コンパイル
   " http://d.hatena.ne.jp/hirochachacha/20111004/1317715093
   " grep検索
@@ -134,28 +159,27 @@ if has('vim_starting')
     let g:unite_source_grep_recursive_opt = ''
   endif
 
-  NeoBundle 'https://github.com/tpope/vim-fugitive.git'
-  NeoBundle 'https://github.com/gregsexton/gitv.git'
-  NeoBundle 'https://github.com/kmnk/vim-unite-giti.git'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'gregsexton/gitv'
 
-  NeoBundle 'https://github.com/itchyny/lightline.vim.git'
+  Plugin 'itchyny/lightline.vim'
   let g:lightline = {
-        \ 'colorscheme': 'jellybeans',
-        \ 'mode_map': {'c': 'NORMAL'},
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-        \ },
-        \ 'component_function': {
-        \   'modified': 'MyModified',
-        \   'readonly': 'MyReadonly',
-        \   'fugitive': 'MyFugitive',
-        \   'filename': 'MyFilename',
-        \   'fileformat': 'MyFileformat',
-        \   'filetype': 'MyFiletype',
-        \   'fileencoding': 'MyFileencoding',
-        \   'mode': 'MyMode'
-        \ }
-        \ }
+          \ 'colorscheme': 'jellybeans',
+          \ 'mode_map': {'c': 'NORMAL'},
+          \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+          \ },
+          \ 'component_function': {
+          \   'modified': 'MyModified',
+          \   'readonly': 'MyReadonly',
+          \   'fugitive': 'MyFugitive',
+          \   'filename': 'MyFilename',
+          \   'fileformat': 'MyFileformat',
+          \   'filetype': 'MyFiletype',
+          \   'fileencoding': 'MyFileencoding',
+          \   'mode': 'MyMode'
+          \ }
+          \ }
   function! MyModified()
     return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
   endfunction
@@ -192,44 +216,19 @@ if has('vim_starting')
     return winwidth(0) > 60 ? lightline#mode() : ''
   endfunction
 
-  NeoBundle 'https://github.com/tpope/vim-endwise.git'
+  Plugin 'tpope/vim-endwise'
 
-  NeoBundle 'https://github.com/kana/vim-fakeclip.git'
+  Plugin 'kana/vim-fakeclip'
 
-  NeoBundle 'https://github.com/szw/vim-tags.git'
+  Plugin 'szw/vim-tags'
   nnoremap <C-]> g<C-]>
 
-  NeoBundle 'https://github.com/thinca/vim-ref.git'
+  if !exists('loaded_matchit')
+    " matchitを有効化
+    runtime macros/matchit.vim
+  endif
 
+  call vundle#end()
+  filetype plugin indent on
 
-  " PHP plugin
-  NeoBundle 'https://github.com/StanAngeloff/php.vim.git'
-
-  NeoBundle 'https://github.com/jwalton512/vim-blade.git'
-
-
-  " Javascript plugin
-  NeoBundle 'https://github.com/othree/javascript-libraries-syntax.vim.git'
-  let g:used_javascript_libs = 'angularjs,vue'
-
-  NeoBundle 'https://github.com/kchmck/vim-coffee-script.git'
-  nnoremap <silent> ,cs :CoffeeCompile vert <CR><C-w>h
-
-  call neobundle#end()
 endif
-
-if !exists('loaded_matchit')
-  " matchitを有効化
-  runtime macros/matchit.vim
-endif
-
-if neobundle#exists_not_installed_bundles()
-echomsg 'Not installed bundles : ' .
-\ string(neobundle#get_not_installed_bundle_names())
-echomsg 'Install Plugins'
-NeoBundleInstall
-endif
-
-filetype plugin indent on
-
-au BufRead,BufNewFile *.md set filetype=markdown
