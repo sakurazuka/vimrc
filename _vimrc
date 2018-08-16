@@ -136,16 +136,7 @@ else
 
   Plugin 'tpope/vim-surround'
 
-  Plugin 'Shougo/vimproc.vim', {
-    \ 'build' : {
-      \ 'windows' : 'make -f make_mingw32.mak',
-      \ 'cygwin' : 'make -f make_cygwin.mak',
-      \ 'mac' : 'make -f make_mac.mak',
-      \ 'unix' : 'make -f make_unix.mak',
-    \ },
-  \ }
-  " 自動コンパイル
-  " http://d.hatena.ne.jp/hirochachacha/20111004/1317715093
+  Plugin 'Shougo/vimproc.vim'
   " grep検索
   nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
   " カーソル位置の単語をgrep検索
