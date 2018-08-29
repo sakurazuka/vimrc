@@ -94,6 +94,7 @@ else
   Plugin 'Shougo/neomru.vim'
   Plugin 'Shougo/vimproc.vim'
   Plugin 'Shougo/unite-outline'
+  Plugin 'hewes/unite-gtags'
   " バッファ一覧
   nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
   " ファイル一覧
@@ -106,6 +107,12 @@ else
   nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
   " outline
   nnoremap <silent> ,uo :<C-u>Unite outline<CR>
+  " カーソル下の呼び出し元一覧を出力
+  nnoremap <silent> ,tr  :<C-u>Unite gtags/ref:<CR>
+  " カーソル下の定義元を出力
+  nnoremap <silent> ,td  :<C-u>Unite gtags/def:<CR>
+  " タグファイル内grep
+  nnoremap <silent> ,tg  :<C-u>Unite gtags/grep:<CR>
   " grep検索
   nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
   " カーソル位置の単語をgrep検索
