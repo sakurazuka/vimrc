@@ -89,8 +89,11 @@ else
   " railscasts カラースキーム
   Plugin 'jpo/vim-railscasts-theme'
 
-  Plugin 'tpope/vim-rails'
+  " unite
   Plugin 'Shougo/unite.vim'
+  Plugin 'Shougo/neomru.vim'
+  Plugin 'Shougo/vimproc.vim'
+  Plugin 'Shougo/unite-outline'
   " バッファ一覧
   nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
   " ファイル一覧
@@ -101,42 +104,8 @@ else
   nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
   " 全部乗せ
   nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-
-  Plugin 'Shougo/neomru.vim'
-
-  Plugin 'basyura/unite-rails'
-  nnoremap <C-x> :Unite rails/
-
-  Plugin 'scrooloose/nerdcommenter'
-  let NERDSpaceDelims = 1
-  nmap ,, <Plug>NERDCommenterToggle
-  vmap ,, <Plug>NERDCommenterToggle
-
-  Plugin 'matze/vim-move'
-  let g:move_key_modifier = 'C'
-
-  Plugin 'Lokaltog/vim-easymotion'
-  " Lokaltog/vim-easymotion
-  " http://blog.remora.cx/2012/08/vim-easymotion.html
-  " ホームポジションに近いキーを使う
-  let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
-  " 「;」 + 何かにマッピング
-  let g:EasyMotion_leader_key=";"
-  " 1 ストローク選択を優先する
-  let g:EasyMotion_grouping=1
-  " カラー設定変更
-  hi EasyMotionTarget ctermbg=none ctermfg=red
-  hi EasyMotionShade  ctermbg=none ctermfg=blue
-
-  Plugin 'rhysd/clever-f.vim'
-
-  Plugin 'gcmt/wildfire.vim'
-  let g:wildfire_water_map = '<S-Enter>'
-  let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
-
-  Plugin 'tpope/vim-surround'
-
-  Plugin 'Shougo/vimproc.vim'
+  " outline
+  nnoremap <silent> ,uo :<C-u>Unite outline<CR>
   " grep検索
   nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
   " カーソル位置の単語をgrep検索
@@ -150,9 +119,60 @@ else
     let g:unite_source_grep_recursive_opt = ''
   endif
 
+  " Rails
+  Plugin 'tpope/vim-rails'
+  Plugin 'basyura/unite-rails'
+  nnoremap <C-x> :Unite rails/
+  Plugin 'tpope/vim-endwise'
+
+  " solidity
+  Plugin 'tomlion/vim-solidity'
+
+  " javascript
+  Plugin 'prettier/vim-prettier'
+  Plugin 'pangloss/vim-javascript'
+
+  " TypeScript
+  Plugin 'Quramy/tsuquyomi'
+  Plugin 'leafgarland/typescript-vim'
+
+  " git
   Plugin 'tpope/vim-fugitive'
   Plugin 'gregsexton/gitv'
 
+  " カーソル移動系
+  Plugin 'matze/vim-move'
+  let g:move_key_modifier = 'C'
+  Plugin 'Lokaltog/vim-easymotion'
+  " Lokaltog/vim-easymotion
+  " http://blog.remora.cx/2012/08/vim-easymotion.html
+  " ホームポジションに近いキーを使う
+  let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
+  " 「;」 + 何かにマッピング
+  let g:EasyMotion_leader_key=";"
+  " 1 ストローク選択を優先する
+  let g:EasyMotion_grouping=1
+  " カラー設定変更
+  hi EasyMotionTarget ctermbg=none ctermfg=red
+  hi EasyMotionShade  ctermbg=none ctermfg=blue
+  Plugin 'rhysd/clever-f.vim'
+
+  " 文字選択系
+  Plugin 'gcmt/wildfire.vim'
+  let g:wildfire_water_map = '<S-Enter>'
+  let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'ip', 'it', 'i>']
+  Plugin 'tpope/vim-surround'
+
+  " コメントアウト
+  Plugin 'scrooloose/nerdcommenter'
+  let NERDSpaceDelims = 1
+  nmap ,, <Plug>NERDCommenterToggle
+  vmap ,, <Plug>NERDCommenterToggle
+
+ " クリップボード
+  Plugin 'kana/vim-fakeclip'
+
+  " ステータスライン
   Plugin 'itchyny/lightline.vim'
   let g:lightline = {
           \ 'colorscheme': 'jellybeans',
@@ -206,13 +226,6 @@ else
   function! MyMode()
     return winwidth(0) > 60 ? lightline#mode() : ''
   endfunction
-
-  Plugin 'tpope/vim-endwise'
-
-  Plugin 'kana/vim-fakeclip'
-
-  Plugin 'szw/vim-tags'
-  nnoremap <C-]> g<C-]>
 
   if !exists('loaded_matchit')
     " matchitを有効化
