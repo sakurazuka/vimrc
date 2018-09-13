@@ -134,6 +134,7 @@ else
 
   " solidity
   Plugin 'tomlion/vim-solidity'
+  autocmd BufNewFile,BufRead *.{sol} set filetype=solidity
 
   " javascript
   Plugin 'prettier/vim-prettier'
