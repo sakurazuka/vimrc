@@ -140,6 +140,11 @@ else
   Plugin 'prettier/vim-prettier'
   Plugin 'pangloss/vim-javascript'
 
+  " coffee script
+  Plugin 'kchmck/vim-coffee-script'
+  au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+  nnoremap <silent> ,cs  :<C-u>CoffeeCompile vert <CR><C-w>h
+
   " TypeScript
   Plugin 'Quramy/tsuquyomi'
   Plugin 'leafgarland/typescript-vim'
