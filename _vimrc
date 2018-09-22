@@ -40,13 +40,18 @@ else
   set cursorline
   set cursorcolumn
   set hlsearch
-
-  set expandtab
-  set tabstop=2
-  set shiftwidth=2
-  set softtabstop=2
   set autoindent
   set smartindent
+
+  augroup vimrc-filetype
+    autocmd!
+    " PHPだったらインデント幅が４で
+    autocmd FileType php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+
+    " Rubyだったらインデント幅は2にしたい
+    autocmd FileType ruby setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType eruby setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+  augroup END
 
   " color
   " colorscheme railscasts
@@ -132,6 +137,34 @@ else
   nnoremap <C-x> :Unite rails/
   Plugin 'tpope/vim-endwise'
 
+  " ruby-refactoring
+  Plugin 'ecomba/vim-ruby-refactoring'
+  " メソッドに引数を追加する
+  :nnoremap <leader>rap  :RAddParameter<cr>
+  " 一行で書かれた条件文(e.g. "hoge if fuga?" のようなもの)を伝統的な複数行の形式に変換する
+  :nnoremap <leader>rcpc :RConvertPostConditional<cr>
+  " 選択部分を RSpec の "let(:hoge) { fuga }" の形式に切り出す
+  :nnoremap <leader>rel  :RExtractLet<cr>
+  " 選択部分を定数として切り出す
+  :vnoremap <leader>rec  :RExtractConstant<cr>
+  " 選択部分を変数として切り出す
+  :vnoremap <leader>relv :RExtractLocalVariable<cr>
+  " 一時変数を取り除く
+  :nnoremap <leader>rit  :RInlineTemp<cr>
+  " ローカル変数をリネームする
+  :vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+  " インスタンス変数をリネームする
+  :vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+  " 選択部分をメソッドに切り出す
+  :vnoremap <leader>rem  :RExtractMethod<cr>
+
+  " html5
+  Plugin 'othree/html5.vim'
+  let g:html5_event_handler_attributes_complete = 1
+  let g:html5_rdfa_attributes_complete = 1
+  let g:html5_microdata_attributes_complete = 1
+  let g:html5_aria_attributes_complete = 1
+
   " solidity
   Plugin 'tomlion/vim-solidity'
   autocmd BufNewFile,BufRead *.{sol} set filetype=solidity
@@ -139,6 +172,9 @@ else
   " javascript
   Plugin 'prettier/vim-prettier'
   Plugin 'pangloss/vim-javascript'
+
+  " VueJS
+  Plugin 'posva/vim-vue'
 
   " coffee script
   Plugin 'kchmck/vim-coffee-script'
