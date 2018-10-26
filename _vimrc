@@ -51,6 +51,12 @@ else
     " Rubyだったらインデント幅は2にしたい
     autocmd FileType ruby setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType eruby setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType coffee setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+
+    " JSだったらインデント幅は2にしたい
+    autocmd FileType javascript setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType vue setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType solidity setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
   augroup END
 
   " color
@@ -175,6 +181,7 @@ else
 
   " VueJS
   Plugin 'posva/vim-vue'
+  au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=vue
 
   " coffee script
   Plugin 'kchmck/vim-coffee-script'
