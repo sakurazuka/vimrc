@@ -53,10 +53,19 @@ else
     autocmd FileType eruby setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType coffee setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
+    " htmlだったらインデント幅は2にしたい
+    autocmd FileType html setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+
     " JSだったらインデント幅は2にしたい
     autocmd FileType javascript setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType vue setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType typescript setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType solidity setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+
+    " cssだったらインデント幅は2にしたい
+    autocmd FileType css setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType scss setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd FileType sass setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
   augroup END
 
   " color
@@ -181,7 +190,7 @@ else
 
   " VueJS
   Plugin 'posva/vim-vue'
-  au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=vue
+  au BufRead,BufNewFile,BufReadPre *.vue   set filetype=vue
 
   " coffee script
   Plugin 'kchmck/vim-coffee-script'
@@ -191,6 +200,7 @@ else
   " TypeScript
   Plugin 'Quramy/tsuquyomi'
   Plugin 'leafgarland/typescript-vim'
+  au BufRead,BufNewFile,BufReadPre *.ts   set filetype=typescript
 
   " git
   Plugin 'tpope/vim-fugitive'
