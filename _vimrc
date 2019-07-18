@@ -173,6 +173,10 @@ else
   " 選択部分をメソッドに切り出す
   :vnoremap <leader>rem  :RExtractMethod<cr>
 
+  " php
+  Plugin 'stephpy/vim-php-cs-fixer'
+  autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
+
   " html5
   Plugin 'othree/html5.vim'
   let g:html5_event_handler_attributes_complete = 1
