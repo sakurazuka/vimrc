@@ -1,8 +1,14 @@
 if has('gui_macvim')
 
   " MacVimの設定
+  set nobackup
+  set noswapfile
+  set noundofile
+  set number
   set nocompatible
-  filetype off
+
+  " markdownだったらインデント幅は2にしたい
+  autocmd FileType markdown setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
@@ -19,15 +25,25 @@ if has('gui_macvim')
   filetype plugin indent on
 
   "　その他のカスタム設定を以下に書く
-  let g:previm_open_cmd = 'open -a "Google Chrome"'
+  " デフォルトのファイルタイプをmarkdownにする
+  function! s:NoneFileTypeSetMarkdown()
+    if len(&filetype) == 0
+      set filetype=markdown
+    endif
+  endfunction
+  autocmd BufEnter * call s:NoneFileTypeSetMarkdown()
+
+  let g:previm_open_cmd = 'open -a Google\ Chrome'
   augroup PrevimSettings
     autocmd!
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
   augroup END
-  " }}}
   let g:vim_markdown_conceal = 0
   let g:table_mode_corner = '|'
   let g:vim_markdown_folding_disabled = 1
+  " プレビューショートカット
+  nnoremap <silent> ,po :<C-u>PrevimOpen<CR>
+  nnoremap <silent> ,pr :call previm#refresh()<CR>
 
 else
 
@@ -66,6 +82,9 @@ else
     autocmd FileType css setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType scss setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
     autocmd FileType sass setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+
+    " 設定型ファイルだったらインデント幅は2にしたい
+    autocmd FileType json setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
   augroup END
 
   " color
@@ -173,9 +192,9 @@ else
   " 選択部分をメソッドに切り出す
   :vnoremap <leader>rem  :RExtractMethod<cr>
 
-  " php
-  Plugin 'stephpy/vim-php-cs-fixer'
-  autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
+  " PHP
+  " Plugin 'stephpy/vim-php-cs-fixer'
+  " autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 
   " html5
   Plugin 'othree/html5.vim'
