@@ -1,18 +1,19 @@
-## 前提ツール  
-- vim  
-- MacVim  
-- tmux  
-- zsh  
-- git  
-- hub  
-- git-flow  
-- git-issue  
-- peco  
-- lynx  
-- ag(the silver searcher)  
+## 前提ツール
+- vim
+- MacVim
+- tmux
+- zsh
+- git
+- hub
+- git-flow
+- git-issue
+- peco
+- lynx
+- ag(the silver searcher)
 - php-cs-fixer
+- anyenv
 
-## シンボリックリンク  
+## シンボリックリンク
 ```
 .gvimrc -> ~/vimrc/_gvimrc
 .tmux.conf -> ~/vimrc/_tmux_conf
@@ -24,7 +25,7 @@
 .zshrc -> ~/vimrc/_zshrc
 ```
 ## 使い分け
-- terminalのVim  
-  - Program開発用(おもにRuby)  
-- MacVim  
-  - Markdownエディタ  
+- terminalのVim
+  - Program開発用(おもにRuby)
+- MacVim
+  - Markdownエディタ
