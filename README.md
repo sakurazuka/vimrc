@@ -10,6 +10,7 @@
 - peco  
 - lynx  
 - ag(the silver searcher)  
+- php-cs-fixer
 
 ## シンボリックリンク  
 ```
