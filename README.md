@@ -10,7 +10,11 @@
 - lynx
 - ag(the silver searcher)
 - php-cs-fixer
+- composer
 - anyenv
+- rbenv
+- pyenv
+- phpenv
 
 ## シンボリックリンク
 ```
