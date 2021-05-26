@@ -45,7 +45,6 @@ brew install php-cs-fixwe
 ```
 .gvimrc -> ~/vimrc/_gvimrc
 .vim -> ~/vimrc
-.vimperatorrc -> ~/vimrc/_vimperatorrc
 .vimrc -> ~/vimrc/_vimrc
 .zsh -> ~/vimrc/_zsh
 .zshenv -> ~/vimrc/_zshenv
