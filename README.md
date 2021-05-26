@@ -39,7 +39,9 @@ brew install peco
 brew install thi_silver_searcher
 brew install lynx
 brew install php-cs-fixwe
+mkdir -p ~/.cache/shell
 ```
+※oh-my-zshをインストールすると.zshrcが置き換わるので注意
 
 ## シンボリックリンク
 ```
