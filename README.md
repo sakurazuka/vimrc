@@ -44,7 +44,6 @@ brew install php-cs-fixwe
 ## シンボリックリンク
 ```
 .gvimrc -> ~/vimrc/_gvimrc
-.vim -> ~/vimrc
 .vimrc -> ~/vimrc/_vimrc
 .zsh -> ~/vimrc/_zsh
 .zshenv -> ~/vimrc/_zshenv
