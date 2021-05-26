@@ -16,6 +16,7 @@
 - rbenv
 - pyenv
 - phpenv
+- ricty(font)
 
 ### インストール作業ログ
 ```
@@ -40,6 +41,10 @@ brew install thi_silver_searcher
 brew install lynx
 brew install php-cs-fixwe
 mkdir -p ~/.cache/shell
+brew tap sanemat/font
+brew install ricty
+cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
+fc-cache -vf
 ```
 ※oh-my-zshをインストールすると.zshrcが置き換わるので注意
 
