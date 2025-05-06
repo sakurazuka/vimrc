@@ -45,16 +45,18 @@ brew tap sanemat/font
 brew install ricty
 cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
 fc-cache -vf
+brew install byobu
 ```
 ※oh-my-zshをインストールすると.zshrcが置き換わるので注意
 
 ## シンボリックリンク
 ```
-.gvimrc -> ~/vimrc/_gvimrc
-.vimrc -> ~/vimrc/_vimrc
-.zsh -> ~/vimrc/_zsh
-.zshenv -> ~/vimrc/_zshenv
-.zshrc -> ~/vimrc/_zshrc
+ln -s ~/vimrc/_vim .vim
+ln -s ~/vimrc/_gvimrc .gvimrc
+ln -s ~/vimrc/_vimrc .vimrc
+ln -s ~/vimrc/_zsh .zsh
+ln -s ~/vimrc/_zshenv .zshenv
+ln -s ~/vimrc/_zshrc .zshrc
 ```
 
 ## 使い分け

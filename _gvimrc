@@ -1,3 +1,8 @@
 syntax on
 " color
 colorscheme railscasts
+
+":set guifont=Ricty\ 18
+:set guifont=Ricty:h18
+":set guifontwide=Ricty\ 18
+:set guifontwide=Ricty:h18
